@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    {{ bookinfo.title }}
+{% endblock %}
+
+{% block backbuttons %}
+    <a class="btn-sm outline-button" href={{ url_for('results') }}>Back to Results</a>
+    <a class="btn-sm outline-button" href={{ url_for('search') }}>Back to Search</a>
+{% endblock %}
+
+{% block body %}
+    <div class="spread-out">
+        <table class="right">
+            <tr>
+                <th>author</th>
+                <td>{{ bookinfo.author }}</td>
+            </tr>
+            <tr>
+                <th>published</th>
+                <td>{{ bookinfo.pubyear }}</td>
+            </tr>
+            <tr>
+                <th>ISBN</th>
+                <td>{{ bookinfo.isbn }}</td>
+            </tr>
+        </table>
+        {% if ratinginfo %}
+        <table class="right">
+            <tr>
+                <th colspan="2">Book Reviews</th>
+            </tr>
+            <tr>
+                <th>average rating</th>
+                <td>{{ ratinginfo.avg }}</td>
+            </tr>
+            <tr>
+                <th># of reviews</th>
+                <td>{{ ratinginfo.nr }}</td>
+            </tr>
+        </table>
+        {% endif %}
+        {% if goodreads_ratinginfo %}
+        <table class="right">
+            <tr>
+                <th colspan="2">Goodreads</th>
+            </tr>
+            <tr>
+                <th>average rating</th>
+                <td>{{ goodreads_ratinginfo.avg }}</td>
+            </tr>
+            <tr>
+                <th># of ratings</th>
+                <td>{{ goodreads_ratinginfo.nr }}</td>
+            </tr>
+        </table>
+        {% endif %}
+    </div>
+    {% if bookerror %}
+    <p class="text-danger">{{ bookerror }}</p>
+    {% endif %}
+    <h3>Your Review</h3>
+        <form method="post" action={{ url_for('book', isbn=bookinfo.isbn) }}>
+            <div class="form-group col-md-2">
+                <label for="rating">My Rating (1-5)</label>
+                <input name="rating" type="number" min="1" max="5" step="1"
+                       value={{ my_rating }}
+                       tabindex="1" class="form-control">
+            </div>
+            <div class="form-group col-md-12">
+                <label for="review">My Review</label>
+                <textarea name="review" 
+                          tabindex="2" class="form-control"
+                          >{{ my_review }}</textarea>
+            </div>
+            {% if error %}
+            <p class="text-danger">{{ error }}</p>
+            {% endif %}
+            {% if review_submitted %}
+            <button type="submit" class="btn outline-button">Update</button>
+            {% else %}
+            <button type="submit" class="btn normal-button">Submit</button>
+            {% endif %}
+        </form>
+    <h3>Other Reviews</h3>
+    {% if reviews %}
+    <table>
+        <tr><th>rating</th><th>review</th><tr>
+        {% for review in reviews %}
+            <tr>
+                <td class="center">{{ review[0] }}</td>
+                <td>{{ review[1] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>No other reviews found</p>
+    {% endif %}
+{% endblock %}

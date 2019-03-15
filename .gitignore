@@ -1,0 +1,5 @@
+# Ignore folder with compiled python files.
+__pycache__
+
+# Ignore folder with Session data.
+flask_session

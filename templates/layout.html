@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% if pagetitle %}
+        <title>{{pagetitle}} - Book Reviews</title>
+        {% else %}
+        <title>my Book Review page</title>
+        {% endif %}
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="../static/styles.css">
+    </head>
+    <body>
+        <div id="menu" class="spread-out">
+            <div>{% block backbuttons %}{% endblock %}</div>
+            <div>{% block menubuttons %}{% endblock %}</div>
+            <div>
+                {% if username %}
+                    Logged in as: {{ username }} 
+                    <a class="btn-sm normal-button" href={{ url_for('logout') }}>Logout</a>
+                {% else %}
+                    <a class="btn-sm outline-button" href={{ url_for('register') }}>Register</a>
+                    <a class="btn-sm normal-button" href={{ url_for('login') }}>Log In</a>
+                {% endif %}
+            </div>
+        </div>
+        <p/>
+        <h1>Book Reviews</h1>
+        <h2>{% block heading %}{% endblock %}</h2>
+
+        {% block body %}
+        {% endblock %}
+
+    </body>
+</html>

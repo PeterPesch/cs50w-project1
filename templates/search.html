@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    {{ pagetitle }}
+{% endblock %}
+
+{% block body %}
+    <form method="post" action="{{ url_for('search') }}">
+        <div class="form-group col-md-12">
+            <label for="title">Title</label>
+            <input name="title" type="text" tabindex="1" class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="author">Author</label>
+            <input name="author" type="text" tabindex="2" class="form-control">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="isbn">ISBN</label>
+            <input name="isbn" type="text" tabindex="3" class="form-control">
+        </div>
+        {% if error %}
+        <p class="text-danger">{{ error }}</p>
+        {% endif %}
+        <button type="submit" class="btn normal-button">Search</button>
+    </form>
+{% endblock %}

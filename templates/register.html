@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    {{ pagetitle }}
+{% endblock %}
+
+{% block body %}
+    <form method="post" action="{{ url_for('register') }}">
+        <div class="form-group col-md-12">
+            <label for="name">Name</label>
+            <input name="name" type="text" minlength="2" tabindex="1" class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="password">Password</label>
+            <input name="password" type="password" minlength="4" tabindex="2" class="form-control">
+        </div>
+        {% if error %}
+        <p class="text-danger">{{ error }}</p>
+        {% endif %}
+        <button type="submit" class="btn normal-button">Register</button>
+        <a class="btn outline-button" href={{ url_for('login') }}>Back to login screen</a>
+    </form>
+{% endblock %}

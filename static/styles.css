@@ -1,0 +1,112 @@
+/* CSS Variables. */
+:root {
+  --main-color: navy;
+  --main-bg-color: skyblue;
+  --alternative-color: greenyellow;
+  --alternative-bg-color: chocolate;
+}
+
+body {
+  background-color: var(--main-bg-color);
+  color: var(--main-color);
+  margin: 10px;
+}
+
+h1 {
+  background-color: var(--main-color);
+  color: var(--main-bg-color);
+  padding: 4px;
+}
+
+table {
+  border-collapse: collapse;
+  border: 2px solid var(--main-color);
+  text-align: center;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+table th {
+  background-color: var(--main-color);
+  color: var(--main-bg-color);
+  border: 1px solid var(--main-bg-color);
+  padding-left: 4px;
+  padding-right: 4px;
+}
+table.right th {
+  text-align: right;
+}
+table.left th {
+  text-align: left;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+table td {
+  border: 1px solid var(--main-color);
+  text-align: left;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+table td > p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+form {
+  border-style: solid;
+  padding: 10px;
+}
+
+.normal-button {
+  color: var(--main-color);
+  background-color: var(--alternative-bg-color);
+  margin: 5px;
+}
+.normal-button:hover {
+  color: var(--alternative-color);
+}
+.outline-button {
+  border: 2px solid var(--alternative-bg-color);
+  background-color: var(--main-bg-color);
+  color: var(--main-color);
+  margin: 5px;
+}
+.outline-button:hover {
+  color: var(--alternative-bg-color);
+  background-color: var(--main-color);
+}
+
+textarea {
+  width: 100%;
+}
+
+.spread-out { 
+  display: flex; 
+  justify-content: space-between;
+}
+
+#menu {
+  border: 2px solid var(--alternative-bg-color);
+  background-color: var(--main-bg-color);
+  color: var(--main-color);
+  font-size: small;
+  padding: 10px;
+}
+#menu a {
+  text-decoration: underline;
+}
+#menu a:link {
+  color: var(--main--color);
+}
+#menu a:visited {
+  color: var(--main-color);
+}
+#menu a:hover {
+  color: var(--alternative-color);
+}
